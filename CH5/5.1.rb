@@ -1,4 +1,4 @@
-#Brute Force:
+#My naive solution:
 # def dutch(array, pivot_index)
 #   smaller = array.select{|i| i < array[pivot_index]}
 #   equal = array.select{|i| i == array[pivot_index]}
@@ -8,6 +8,11 @@
 # end
 
 # dutch([0,1,2,0,2,1,1], 2)
+
+
+
+
+
 
 #O(n)
 # def dutch(array, pivot_index)
