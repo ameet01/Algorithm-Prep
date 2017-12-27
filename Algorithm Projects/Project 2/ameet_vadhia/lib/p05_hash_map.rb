@@ -65,7 +65,7 @@ class HashMap
 
     @store = Array.new(num_buckets * 2) { LinkedList.new }
 
-    old.flatten.each do |list|
+    old.each do |list|
       list.each do |node|
         self.set(node.key, node.val)
       end
