@@ -8,6 +8,10 @@ class Node
 	end
 end
 
+#have to iterate through two ll's that are the same length in order to find intersection
+#find length of both, get difference
+#remove that many from the longest ll
+#iterate through both, find the value that's the same
 
 def intersection(ll1, ll2)
   return nil if ll1 == nil || ll2 == nil
