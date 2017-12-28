@@ -14,7 +14,6 @@ def can_string_be_palindrome?(string)
   found_one = false
 
   hash.each do |k, v|
-    return false if v > 1 
     if v == 1 && found_one == true
       return false
     end

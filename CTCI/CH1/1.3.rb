@@ -1,11 +1,13 @@
 #URLify
 
+
+
+
 def urlify(string, max)
   string = string[0...max]
   string = string.gsub(' ', "%20")
   string
 end
-
 
 
 
