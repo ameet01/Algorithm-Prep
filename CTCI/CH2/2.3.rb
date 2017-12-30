@@ -1,21 +1,29 @@
-# Delete middle node
+class Node
+	attr_accessor :val, :nextnode
+	def initialize(val, nextnode)
+		@val = val
+		@nextnode = nextnode
+	end
+end
 
-#brute force
-# def delete_middle(node)
-#   until node.next == nil
-#     node.val = node.next.val
-#     if(node.next.next == nil)
-#       node.next = nil
-#     else
-#       node = node.next
-#     end
-#   end
-# end
 
 def delete_middle(node)
-  return false if node.next == nil || node == nil
-
-  node.val = node.next.val
-  node.next = node.next.next
+  return false if node.nextnode == nil || node == nil
+  node.val = node.nextnode.val
+  node.nextnode = node.nextnode.nextnode
   return true
 end
+
+
+node1 = Node.new(0, nil)
+node2 = Node.new(1, node1)
+node3 = Node.new(2, node2)
+node6 = Node.new(2, node3)
+node4 = Node.new(1, node6)
+node5 = Node.new(0, node4)
+
+
+delete_middle(node6)
+delete_middle(node5)
+
+p node5
