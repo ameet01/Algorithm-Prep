@@ -4,7 +4,7 @@ def partition(node, partition)
   LinkedListNode head = node
   LinkedListNode tail = node
 
-  unless node.val == nil
+  until node.val == nil
     if node.val < partition
       node.next = head
       head = node
