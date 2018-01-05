@@ -24,7 +24,6 @@ class BinaryMinHeap
   def push(val)
     @store.push(val)
     BinaryMinHeap.heapify_up(@store, count - 1, count, &prc)
-
     val
   end
 
@@ -81,6 +80,8 @@ class BinaryMinHeap
     self.heapify_down(array, child_idx, len, &prc)
   end
 
+
+  
   def self.heapify_up(array, child_idx, len = array.length, &prc)
     return array if child_idx == 0
     index = self.parent_index(child_idx)
