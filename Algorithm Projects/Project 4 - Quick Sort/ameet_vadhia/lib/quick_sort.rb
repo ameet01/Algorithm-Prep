@@ -19,6 +19,7 @@ class QuickSort
     return array if length <= 1
     prc ||= Proc.new { |a, b| a <=> b }
     pivot = self.partition(array, start, length, &prc)
+    
     self.sort2!(array, start, pivot - start, &prc)
     self.sort2!(array, pivot + 1, length - (pivot - start + 1), &prc)
     array
@@ -26,7 +27,6 @@ class QuickSort
 
   def self.partition(array, start, length, &prc)
     prc ||= Proc.new { |a, b| a <=> b }
-
     pivot = array[start]
     split_point = start
 
@@ -36,10 +36,13 @@ class QuickSort
         split_point += 1
       end
     end
-
+    
     array[start], array[split_point] = array[split_point], array[start]
     split_point
   end
 
 
 end
+
+
+p QuickSort.sort2!([5,3,4,2,1,3,7,9,6,8,1])
