@@ -11,10 +11,24 @@ class BinarySearchTree
   end
 
   def insert(value)
-    
+    if !@root
+      @root = BSTNode.new(value) 
+      return
+    end
+
+    BinarySearchTree.insert(@root, value)
   end
 
   def find(value, tree_node = @root)
+    return nil if tree_node.nil?
+
+    if value == tree_node.value
+      return tree_node
+    elsif value > tree_node.value
+      find(value, tree_node.right)
+    elsif value < tree_node.value
+      find(value, tree_node.left)
+    end
   end
 
   def delete(value)
@@ -36,5 +50,16 @@ class BinarySearchTree
 
   private
   # optional helper methods go here:
+
+  def self.insert(node, value)
+    return BSTNode.new(value) if !node
+    if value < node.value
+      node.left = BinarySearchTree.insert(node.left, value)
+    else
+      node.right = BinarySearchTree.insert(node.right, value)
+    end
+
+    node
+  end
 
 end
