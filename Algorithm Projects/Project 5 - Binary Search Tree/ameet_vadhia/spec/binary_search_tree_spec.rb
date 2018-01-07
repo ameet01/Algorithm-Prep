@@ -79,7 +79,6 @@ describe BinarySearchTree do
       it 'deletes the target node' do
         parent_of_four = prefilled_bst.root.left
         prefilled_bst.delete(4)
-
         expect(parent_of_four.right).to eq(nil)
       end
 
