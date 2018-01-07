@@ -32,29 +32,47 @@ class BinarySearchTree
   end
 
   def delete(value)
-    node = find(value, @root)
-    parent = get_parent(value, @root) if node != @root
-    @root = nil if @root.value = value
+    return @root = nil if @root.value == value
+    node = find(value)
+    parent = get_parent(value)
 
-    if node.left.nil? && node.right.nil?
-      if parent.right.value = value
-        parent.right = nil 
-      elsif parent.left.value = value
-        parent.left = nil
+    if !node.left && !node.right
+      replace_parents_child(parent, nil, value)
+    elsif !node.left && node.right
+      replace_parents_child(parent, node.right, value)
+    elsif node.left && !node.right
+      replace_parents_child(parent, node.left, value)
+    elsif node.left && node.right
+      max_node = maximum(node.left)
+      parent_of_max = get_parent(max_node.value)
+      replace_parents_child(parent, max_node, value)
+      if max_node.left
+        temp = max_node.left
+        replace_parents_child(parent_of_max, temp, max_node.value)
+      else
+        temp = max_node.right
+        replace_parents_child(parent_of_max, temp, max_node.value)
       end
     end
   end
 
-  def get_parent(value, tree_node = @root)
-    return nil if tree_node.nil?
+  def get_parent(value, parent = @root)
+    return parent if parent.left.value == value || parent.right.value == value
 
-    if value == tree_node.left.value || value == tree_node.right.value
-      return tree_node
-    elsif value > tree_node.value
-      get_parent(value, tree_node.right)
-    elsif value < tree_node.value
-      get_parent(value, tree_node.left)
+    if value <= parent.value
+      return parent.left.nil? ?
+        nil :
+        get_parent(value, parent.left)
+    else
+      return parent.right.nil? ?
+        nil :
+        get_parent(value, parent.right)
     end
+  end
+
+  def replace_parents_child(parent, item, value)
+    parent.left = item if parent.left.value == value
+    parent.right = item if parent.right.value == value
   end
 
   # helper method for #delete:
@@ -66,22 +84,34 @@ class BinarySearchTree
   end
 
   def depth(tree_node = @root)
-    max_depth = 0
+    # max_depth = 0
 
-    stack = [[tree_node, 0]]
+    # stack = [[tree_node, 0]]
 
-    until stack.empty?
-      node, depth = stack.pop
+    # until stack.empty?
+    #   node, depth = stack.pop
 
-      if !node.left && !node.right
-        max_depth = depth if depth > max_depth
+    #   if !node.left && !node.right
+    #     max_depth = depth if depth > max_depth
+    #   end
+
+    #   stack.push([node.left, depth + 1]) if node.left
+    #   stack.push([node.right, depth + 1]) if node.right
+    # end
+
+    # max_depth
+    if tree_node.nil?
+      return -1
+    else 
+      left_depth = depth(tree_node.left)
+      right_depth = depth(tree_node.right)
+  
+      if left_depth > right_depth
+        return left_depth + 1
+      else
+        return right_depth + 1
       end
-
-      stack.push([node.left, depth + 1]) if node.left
-      stack.push([node.right, depth + 1]) if node.right
     end
-
-    max_depth
   end 
 
   def is_balanced?(tree_node = @root)
