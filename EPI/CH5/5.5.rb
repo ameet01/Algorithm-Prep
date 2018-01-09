@@ -10,9 +10,9 @@ def delete(array)
       index += 1
     end
   end
-  
   index
 end
 
 
-p delete([2,3,5,5,7,11,11,11,13])
+p delete([2,3,3,5,5,7,11,11,11,13])
+

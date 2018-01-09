@@ -129,8 +129,8 @@ class BinarySearchTree
         return false if depths.length > 2
         return false if depths.length == 2 && (depths[0] - depths[1]).abs > 1
       else
-        stack.push([node.left, depth + 1]) if node.left
         stack.push([node.right, depth + 1]) if node.right
+        stack.push([node.left, depth + 1]) if node.left
       end
     end
 
@@ -139,7 +139,9 @@ class BinarySearchTree
 
   def in_order_traversal(tree_node = @root, arr = [])
     return [] if !tree_node
-    self.in_order_traversal(tree_node.left) + [tree_node.value] + self.in_order_traversal(tree_node.right)
+    left = self.in_order_traversal(tree_node.left) 
+    right = self.in_order_traversal(tree_node.right)
+    left + [tree_node.value] + right
   end
 
 

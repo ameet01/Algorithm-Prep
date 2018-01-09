@@ -27,6 +27,8 @@ class Stack
     if @min_stack[-1] == value
       @min_stack.pop
     end
+
+    value
   end
 
   def peek

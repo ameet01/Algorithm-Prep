@@ -28,3 +28,4 @@ end
 
 p permutation1('asdf', 'fdsa')
 p permutation2('asdf', 'fsda')
+

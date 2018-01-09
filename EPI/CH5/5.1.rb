@@ -70,3 +70,20 @@ def dutch(array, pivot_index)
   dutch([0,1,2,0,2,1,1], 3)
   
   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
