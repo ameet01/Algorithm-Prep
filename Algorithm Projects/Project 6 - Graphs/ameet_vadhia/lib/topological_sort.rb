@@ -1,4 +1,5 @@
 require_relative 'graph'
+require 'set'
 
 # Implementing topological sort using both Khan's and Tarian's algorithms
 
@@ -16,7 +17,7 @@ def topological_sort(vertices)
     vertex = queue.shift
     result << vertex
 
-    vertex.out_edges.reverse.each do |edge|
+    vertex.out_edges.dup.each do |edge|
       if edge.to_vertex.in_edges.length == 1
         queue.push(edge.to_vertex) 
       end
@@ -30,3 +31,32 @@ def topological_sort(vertices)
     return []
   end
 end
+
+
+def topological_sort_tarjans(vertices)
+  ordering = []
+  explored = Set.new
+
+  vertices.each do |vertex|
+    dfs!(vertex, explored, ordering) if !explored.include?(vertex)
+  end
+
+  ordering
+end
+
+def dfs!(vertex, explored, ordering)
+  explored.add(vertex)
+
+  vertex.out_edges.each do |edge|
+    new_vertex = edge.to_vertex
+    dfs!(new_vertex, explored, ordering) if !explored.include?(new_vertex)
+  end
+
+  ordering.unshift(vertex)
+end
+
+
+
+[2,3,4,5]
+
+[1 * 3 * 4 * 5, 1 * 2 * 4 * 5, 1 * 2 * 3 * 5, 1 * 2 * 3 * 4]

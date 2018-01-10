@@ -20,10 +20,8 @@ def install_order(arr)
     vertices << Vertex.new(id)
   end
 
-  edges = []
-
   arr.each do |id, dependency|
-    edges << Edge.new(vertices[dependency - 1], vertices[id - 1])
+     Edge.new(vertices[dependency - 1], vertices[id - 1])
   end
 
   sorted_array = topological_sort(vertices)
