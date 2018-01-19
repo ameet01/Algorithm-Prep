@@ -1,5 +1,5 @@
  
- class ListNode
+class ListNode
   attr_accessor :val, :next
   def initialize(value)
     @val = value

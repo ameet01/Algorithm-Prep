@@ -1,6 +1,7 @@
 #sample online data
 
 
+
 def online_random_sample(array, k)
   sample = array.slice(0...k)
   
