@@ -11,4 +11,4 @@ def is_prime?(n)
   (2...n/2).none? {|i| n % i == 0}
 end
 
-p primes(22)
+p primes(24)
