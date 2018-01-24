@@ -57,3 +57,17 @@ root.right.left.left = TreeNode.new(3)
 
 p binary_tree_is_symmetric(root)
 p binary_tree_is_symmetric2(root)
+
+
+def symmetric(tree)
+  return check_symmetry(tree.left, tree.right)
+end
+
+
+def check_symmetry(n1, n2)
+  return true if !n1 && !n2
+  return false if n1 && !n2
+  return false if !n1 && n2
+
+  return n1.val == n2.val && check_symmetry(n1.left, n2.right) && check_symmetry(n1.right, n2.left)
+end

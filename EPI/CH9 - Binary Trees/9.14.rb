@@ -1,6 +1,6 @@
 
 
-#pre order traversal - iterative
+#create array from leaf nodes
 
 
 class TreeNode
@@ -12,26 +12,25 @@ class TreeNode
   end
 end
 
+
+
 #recursive
-
-
-def print_nodes(root)
-  return if !root
-  p root.val
-  print_nodes(root.left)
-  print_nodes(root.right)
+def leaf_nodes(tree)
+  return [] if !tree
+  return [tree.val] if !tree.left && !tree.right
+  leaf_nodes(tree.left) + leaf_nodes(tree.right)
 end
 
-
 #iterative
-
-def print_nodes2(root)
-  stack = [root]
+def leaf_node2(tree)
   result = []
+  stack = [tree]
 
   until stack.empty?
     node = stack.pop
-    result.push(node.val)
+
+    result << node.val if !node.left && !node.right
+
     stack.push(node.right) if node.right
     stack.push(node.left) if node.left
   end
@@ -46,7 +45,8 @@ root.left.left = TreeNode.new(11)
 root.left.right = TreeNode.new(8)
 root.right.right = TreeNode.new(1)
 root.right.left = TreeNode.new(1)
+root.right.left.right = TreeNode.new(5)
 root.left.right.left = TreeNode.new(3)
 
-# p print_nodes(root)
-p print_nodes2(root)
+
+p leaf_node2(root)
