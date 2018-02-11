@@ -43,4 +43,4 @@ def find_smallest_subarray_covering_all_values(paragraph, keywords)
   result
 end
 
-p find_smallest_subarray_covering_all_values('i pledge allegiance to the flag of the united states of america and to the republic'.split(' '), ['allegiance', 'the', 'flag', 'united'])
+p find_smallest_subarray_covering_all_values('hello there good sir my name is ameet '.split(' '), ['good', 'sir', 'ameet'])
